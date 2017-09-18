@@ -1,0 +1,7 @@
+= The basics
+
+:toc: right
+
+== Level 2
+
+Link to a LICENCE[file]
