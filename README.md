@@ -24,3 +24,5 @@ The materials in this repository were compiled for the course "C268/01: _Foundat
 Most of the materials are written as [jupyter notebooks](http://jupyter-notebook.readthedocs.io/en/latest/examples/Notebook/What%20is%20the%20Jupyter%20Notebook.html). Reading and executing these require successful installation of a particular [_software environment_](html/software-environments.html).
 
 You can browse through the materials in static form (_i.e._ without being able to execute any code) on the [GitHub repository-pages](https://github.com/meeg-cfin/scientific_computing_basics).
+
+To get started, [go to the overview-notebook](notebooks/01-Course-Overview.ipynb) and follow the links.
