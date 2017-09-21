@@ -1,0 +1,553 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# The Command Line Interface (CLI)\n",
+    "\n",
+    "The first paragraph of [this introduction](http://lifehacker.com/5633909/who-needs-a-mouse-learn-to-use-the-command-line-for-almost-anything/amp) serves as our motivation:\n",
+    "\n",
+    ">The command-line interface, sometimes referred to as the CLI, is a tool into which you can type text commands to perform specific tasks—in contrast to the mouse's pointing and clicking on menus and buttons. Since you can directly control the computer by typing, many tasks can be performed more quickly, and some tasks can be automated with special commands that loop through and perform the same action on many files—saving you, potentially, loads of time in the process.\n",
+    "\n",
+    "Windows-users should move to the Linux virtual machine provided, Mac-users can choose to remain on their 'native' platform and simply start the `Terminal.app` found in `Appliations/Utilities`."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Resources\n",
+    "\n",
+    "In addition to the links in this document, you can get inspiration from a provided excerpt of the book \"_Data Science at the Command Line_\" by Jeroen Janssens ([Published by O’Reilly Media](http://shop.oreilly.com/product/0636920032823.do?cmp=af-strata-books-videos-product_cj_9781491947852_%25zp)).\n",
+    "\n",
+    "If you find yourself in need of a _thorough_ introduction to the CLI, the freely-available book [_The Linux Command Line_](http://linuxcommand.org/tlcl.php) is highly recommended."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Commands\n",
+    "\n",
+    "There is an equivalent _explicit_ command to every operation you can perform using the mouse. Note that this is _not_ to say that being explicit and literal would generally be _easier_ than using the mouse! _Use the right tool for the job._\n",
+    "\n",
+    "As detailed on [this page](https://www.davidbaumgold.com/tutorials/command-line/), the basic _syntax_ of the CLI is:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "UTILITY -optional_flags ARGUMENT1 ARGUMENT2 ..."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "where the 'utility' performs the task you want, 'flags' modify its default behaviour, and 'arguments' determine the _scope_ of the operation (_e.g._ which files or directories to operate on). Depending on the task, utilities take from zero to many arguments."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Terminal\n",
+    "\n",
+    "The word 'terminal' stems from the days of building-sized calculators (1950's): it was the single access point to the computer. In modern computers we can have any number of 'virtual' terminals open, as _applications_ (for Mac and Linux users, Windows doesn't have a useful analogue). We issue our commands the the _command prompt_, which typically is the dollar-sign (`$`). Any messages or command outputs from the computer to us will appear after the prompt.\n",
+    "\n",
+    "### A note on the terminal prompt\n",
+    "\n",
+    "Like most things in Linux, the command prompt can be customised. This is the case for both the VM and Mac users. For example, the 'working directory' (see below) is often shown by default."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## The shell: a command interpreter\n",
+    "\n",
+    "We'll talk about [computer programs and languages](computer-programs-and-data-types.ipynb) a little later. For now, suffice it to say that the specific set of commands available for use are determined by the _shell_: a program that _interprets_ commands.\n",
+    "\n",
+    "The shell communicates with the OS, which translates instructions to the _kernel_, which is yet another program layer responsible for hardware-interactions (CPU, memory, disk, screen, etc.). But we digress: the shell is the 'deepest' you are likely ever to have the need to go!"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Bourne Again SHell (bash)\n",
+    "\n",
+    "We will be using `bash` to interact with the computer. This is the default shell on most Linux-based OSs, as well as macOS. \n",
+    "\n",
+    "### Aside: Linux vs. macOS\n",
+    "\n",
+    "'Linux' is in fact the name of the kernel, many OSs (sometimes called 'distributions') are built on top of it, such as RedHat/Fedora, SuSe, Mint, etc. The OS X-line of Mac operating systems (renamed macOS) shares a common 'parent' with Linux: UNIX. The Darwin-kernel underneath macOS is like linux's sibling (they took very different routes in their lives though...) For this reason, the experience of interacting with linux and macOS computers at the shell-level is very similar, and academic software development on Linux is feasible to _translate_ to macOS."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Directory navigation\n",
+    "\n",
+    "The commands we meet in this section are for casually browsing through the file system. None of the _do_ anything to files; an analogy might be just browsing around using `Windows Explorer` or `Finder`.\n",
+    "\n",
+    "* `ls`\n",
+    "* `pwd`\n",
+    "* `cd`\n",
+    "* `file`\n",
+    "* `less`\n",
+    "* `head` and `tail`\n",
+    "* `wc`"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Listing contents and moving around"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The command `ls` (short for 'list') shows the contents of the current directory"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "ls"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "But where am I? Use 'print working directory' to find out:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "pwd"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "To move around, use `cd` to 'change directory'. The utility takes a single argument, the `$TARGET` directory"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "cd $TARGET"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "When the Terminal-application starts, it will by default place you in _your home folder_."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### What directory (a.k.a. filesystem location) are you in now? Where is 'home'?\n",
+    "#### What is the contents of your home folder?\n",
+    "#### Change directory into the Documents-folder and display the contents (if any...)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "To 'go up' one level in the directory hierarchy, use the 'dot-dot'-syntax (__NB__ the space between `cd` and `..`!)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "cd .."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### The path-separator: `/`\n",
+    "\n",
+    "Based on the output of the `pwd`-command, you can determine that the symbol separating _levels of the directory hierarchy_ on both Linux and Mac is the _forward slash_: `/`. In contrast, Windows uses the _backslash_ (`\\`).\n",
+    "\n",
+    "The term 'path' refers to the 'route' you would have to travel to reach any file/folder in the directory hierarchy."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Special notations\n",
+    "\n",
+    "There are three special locations that have their own notations:\n",
+    "\n",
+    "* `.` (dot)\n",
+    "* `..` (dot dot)\n",
+    "* `~/` (tilde slash)\n",
+    "\n",
+    "'Dot' is short for 'current working directory', _i.e._, the output of `pwd`. 'Dot dot' is short for 'the _parent_ of the current directory'. 'Tilde slash' is short for 'my home directory'.\n",
+    "\n",
+    "#### Where are you now?"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Relative vs. absolute paths as arguments"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Each file system has a _root_: the highest level of the hierarchy of files and folders. This is denoted simply as `/`. (The Windows-equivalent would be 'C:\\')\n",
+    "\n",
+    "Utilities like `ls` and `cd` can take relative or absolute paths as arguments:\n",
+    "\n",
+    "* __an absolute path__ explicitly lists the location of a TARGET, from root-level down\n",
+    "* __a relative path__ only lists the location _relative_ to the present working directory"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### Change directory to the root of the filesystem & list the contents"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### Change directory to the folder `local` in the folder `usr` at the root of the filesystem, _using only a single command_"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### Change to your home directory using its absolute path in a single command"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "_Hint_: `cd` has a default value if you give it no arguments: it takes you _home_."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "cd"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Permissions\n",
+    "\n",
+    "Linux/Mac strongly enforce access permissions: some directories and files are off-limits to you as a 'normal' user! For example, you cannot enter other people's home folders, and there are lots of files you can read, but not _write to_.\n",
+    "\n",
+    "#### Try to change directory to: `/root`\n",
+    "\n",
+    "In addition to users, Linux/Mac operates with a notion of _groups_. Execute the `groups`-command to find out which you belong to."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Tab autocompletion\n",
+    "\n",
+    "___This is the most important feature shell-newcomers must learn!___ You ___never___ (ever) type full paths into the terminal. Instead, you ___let the shell 'guess' what you want___ by typing in the beginning of the path, and ___hitting the Tab-key___!\n",
+    "\n",
+    ">Whenever you need to type out a location in an argument (for example, in the cd command), you don't have to type out the whole thing: the first few letters will do. Once you've typed three or four letters, press the tab key, and the command line will fill in the rest for you! For example, if you are in your home directory, and you type cd Desk and then press the tab key, the command line will automatically complete the command to read cd Desktop! You can also use this if you find yourself mistyping folder names: tab autocompletion will always fill it in correctly.\n",
+    "\n",
+    "#### Do as [the quote above](https://www.davidbaumgold.com/tutorials/command-line/) says!\n",
+    "\n",
+    "### Command history\n",
+    "\n",
+    "All the commands you type into the terminal (including the ones that didn't actually work) are saved into the _command history_. When at the prompt, you can __hit the arrow up-key__ to go back to the previous command. Hit it again to get to the previous one, etc. Arrow down will bring you back in the history.\n",
+    "\n",
+    "#### Scroll through your command history until you find one using the `ls`-command. Change the argument to something else and run it."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Go to (change directory to) your course materials-folder.\n",
+    "\n",
+    "_The following assumes that you placed the `notebooks`-folder of the course materials into the folder you shared with the VM._ If you did something else, please use your _host OS_ (Windows or Mac) to move `notebooks` so that it can be viewed accessed by the _guest OS_ (Linux) too.\n",
+    "\n",
+    "### But where can I find my shared-folder in Linux (the VM)?!\n",
+    "\n",
+    "VirtualBox '_mounts_' shared folder into the `/media`-directory and appends `sf_` (for '__s__hared __f__older') to the name of the share. If you created the share [exactly as instructed](04-Software-installations.ipynb), you'll find it in: `/media/sf_shared`."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## File types: textual or binary?\n",
+    "\n",
+    "Note that the _suffix_ of a file does not necessarily carry _any_ information on its contents! Some suffixes, such as `.txt` are considered \"standardised\", but the operating system does not enforce any rules on the naming of files."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### Use the command `file` to determine the file types of:\n",
+    "\n",
+    "* `short_textual_file.xyz`\n",
+    "* `long_textual_file.log`\n",
+    "* `some_unknown_file.fmt`\n",
+    "\n",
+    "___Remember to use tab-completion, folks!___"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "file short_textual_file.xyz"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### ASCII and Unicode: _character encoding_\n",
+    "\n",
+    "American Standard Code for Information Interchange (ASCII) is a [mapping](https://en.wikipedia.org/wiki/ASCII) between a _byte value_ and a _character_ such as 'a' or '@'.\n",
+    "\n",
+    "#### How many distinct values can a byte of information represent?\n",
+    "\n",
+    "What about all the French \"e, è, é, ê, ë\" 's?!? Not to mention Cyrillic, Arabic, etc. characters? Enter [Unicode](https://en.wikipedia.org/wiki/Unicode), and specifically the most commonly used _encoding_: [UTF-8](https://en.wikipedia.org/wiki/UTF-8). UTF-8 encodes characters with up to 21 bits, and can therefore represent 2.097.151 unique characters. 89.7% of websites are UTF-8 encoded."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Displaying the contents of a textual file in bash\n",
+    "\n",
+    "It is often most efficient to view the contents of small files in the terminal, instead of a graphical text editor. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": false,
+    "scrolled": true
+   },
+   "outputs": [],
+   "source": [
+    "cat short_textual_file.xyz"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "For longer files, the `less` command is very handy."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "less long_textual_file.log"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Some navigation commands include:\n",
+    "\n",
+    "* [arrow keys]: move up/down a line at a time\n",
+    "* [space or n]: move down a page (next page)\n",
+    "* [b]: move up (back) a page\n",
+    "* [g]: move to top of file\n",
+    "* [G] (Shift-G): move to bottom of file\n",
+    "* [q]: quit viewing the file"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### First/last `n` lines in a file\n",
+    "\n",
+    "* display the first 10 lines of `long_textual_file.log` using the `head`-command with flag `-n 10`\n",
+    "* display the last 10 lines of `long_textual_file.log` using the `tail`-command with flag `-n 10`"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### Counting lines, words and characters: `wc`\n",
+    "\n",
+    "Sometimes it can be useful to count the number of elements in a text file; use the utility `wc` ('word count') for this:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "wc short_textual_file.xyz"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The output is read as\n",
+    "\n",
+    "```\n",
+    "    lines    words    characters\n",
+    "```\n",
+    "\n",
+    "You can also use the `-l`, `-w` and `-m` flags to only show one of the three outputs."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### What happens if you try to display the contents of a _binary file_?"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "less binary_image_file"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "To 'See it anyway', hit 'y' for 'yes'."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### A closer look at the list of files in a folder\n",
+    "\n",
+    "#### List the contents of the `notebooks`-folder using the flag: `-l` (\"minus el\")\n",
+    "\n",
+    "[This page](http://go2linux.garron.me/command-ls-file-permissions/) should help in figuring out the result. Note that command flags can be combined, _e.g._, `-la`.\n",
+    "\n",
+    "#### Append `a` to the `l`-flag; which new items do you see?\n",
+    "\n",
+    "#### Append `h` to the `l`-flag; what happens to the file size?"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Getting help: read the `man`-ual\n",
+    "\n",
+    "Many built-in shell commands have a so-called `man`-page:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "man ls"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Next up: [Working on the command line](22-Working-on-command-line.ipynb)"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.6.2"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}

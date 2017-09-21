@@ -194,7 +194,7 @@
     "\n",
     "We'll talk about variables in the context of [computer programs](computer-programs-and-data-types) (our next topic). \n",
     "\n",
-    "To demonstrate what `conda` is doing when you '_activate_' an environment, and _why indeed they are called environments_, temprorarily _deactivate_ the current ('scb') environment:\n",
+    "To demonstrate what `conda` is doing when you '_activate_' an environment, and _why indeed they are called environments_, temprorarily _deactivate_ the current ('fddhs') environment:\n",
     "\n",
     "```\n",
     "source deactivate  # linux/mac\n",
@@ -205,7 +205,7 @@
     "\n",
     "Where is the `python`-executable located in the two cases? How is this reflected in the `PATH` environment variable?\n",
     "\n",
-    "### Reactivate `scb`"
+    "### Reactivate `fddhs`"
    ]
   }
  ],
