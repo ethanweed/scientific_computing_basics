@@ -1,4 +1,4 @@
-name: csb
+name: scb
 channels:
 - defaults
 - conda-forge
