@@ -11,9 +11,8 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 RUN git clone https://github.com/meeg-cfin/scientific_computing_basics.git \
-    /home/jovyan/Tutorial
-    
-RUN mkdir /home/jovyan/Tutorial/files
+    /home/jovyan/Tutorial && \
+    mkdir /home/jovyan/Tutorial/files
 
 WORKDIR /home/jovyan/Tutorial
 ENTRYPOINT [ "/bin/bash", "-c"]

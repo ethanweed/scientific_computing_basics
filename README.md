@@ -26,3 +26,23 @@ Most of the materials are written as [jupyter notebooks](http://jupyter-notebook
 You can browse through the materials in static form (_i.e._ without being able to execute any code) on the [GitHub repository-pages](https://github.com/meeg-cfin/scientific_computing_basics).
 
 To get started, [go to the overview-notebook](notebooks/01-Course-Overview.ipynb) and follow the links.
+
+### Using Docker image
+A way to get the materials in an all ready functioning and prepackaged way is to use the [Docker](https://www.docker.com/what-docker) image. 
+
+To use the image:
+
+* Install Docker https://docs.docker.com/install/
+* Get the Docker image: docker pull meegcfin/scb:latest
+* To run the Docker image in a terminal write:
+  * docker run -it \-\-rm -p 8888:8888 meegcfin/scb:latest start-notebook.sh
+  * This will give a line that looks like this:
+	
+	http://localhost:8888/?token=56d666e84b27539b51adf4257dc4ddcb8cadd2
+	
+	Copy and paaste that into a web browser and you are ready to run.
+  * If you prefer to use Jupyter Lab start the image with:
+  
+    docker run -it \-\-rm -p 8888:8888 -e JUPYTER_ENABLE_LAB=1 \-\-rm meegcfin/scb:latest start-notebook.sh
+
+	
