@@ -1,0 +1,6 @@
+*/notebooks/*
+*/src/*
+environment*
+*/.git/*
+.gitigonore?
+*.*~
