@@ -203,5 +203,4 @@ if __name__ == '__main__':
                                    sufflist=['txt', 'log', 'bat', 'dat',
                                              'htm', 'html', 'yaml'])
     inject = explode_text_to_files(nest)
-
-
+    os.makedirs('space suck', exist_ok=True)
